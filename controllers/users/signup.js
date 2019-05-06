@@ -2,6 +2,7 @@ let Users = require('./../../models/Users')
 let utilityFunction = require('./../../helpers/utilityFunctions')
 
 let signup = (req,res)=>{
+    
     if (req.body.username && req.body.email && req.body.password && req.body.phoneNo) {
         let email = req.body.email
         let userName = req.body.username
@@ -17,13 +18,13 @@ let signup = (req,res)=>{
         .catch(err => {
             console.log('signup err final',err);
             if(err.status && err.message) {
-                return res.status(err.status).send({ status: err.status, message: err.message, data: err.data })
+                return res.status(200).send({ status: err.status, message: err.message, data: err.data })
             } else {
-                return res.status(400).send({ status: 400, message: 'Something went wrong', data: {} })
+                return res.status(200).send({ status: 400, message: 'Something went wrong', data: {} })
             }
         });
     } else {
-        return res.status(400).send({ status: 400, message: 'Invalid parameter', data: {} })
+        return res.status(200).send({ status: 400, message: 'Invalid parameter', data: {} })
     }
     
 }
